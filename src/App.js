@@ -49,6 +49,14 @@ class App extends React.Component {
         return {
             player: [ ...prevState.players ] // 새로운 바구니에서 배열을 가지고 와서 펼쳐라
         }
+
+        //map으로 할 경우 [] 필요없음
+        // player: prevState.players.map(player => {
+        //  if(player.id === id){
+        //      player.score+= delta;
+        //  }
+        //  return player;
+        // })
     })
   }
 }
