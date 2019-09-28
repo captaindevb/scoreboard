@@ -5,10 +5,6 @@ import React from 'react';
 //render 오버라이딩해서 React Element를 리턴해야함.
 //속성앞에 반드시 this를 붙여야한다. new로 클래스를 생성하기때문에 자기자신을 나타내는 this를 붙여준다.
 export class Counter extends React.Component{
-    state = {
-        score: 30
-    }
-
     increment = () => {
         console.log('increment' );
         //this.state.score += 1; //UI 렌더링이 안된다. 단순히 모델값만 바뀜.
