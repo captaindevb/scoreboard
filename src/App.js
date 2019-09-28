@@ -21,7 +21,11 @@ class App extends React.Component {
           { // 여기서 부터 jsx expression
             this.state.players.map((player) => { //props로  app에서 내려준 값 + map 사용해서 새로운 배열 리턴하기
               return ( //2. 콜백 펑션 넘겨주기
-                  <Player name={player.name} score={player.score} id={player.id} key={player.id} removePlayer={this.handleRemovePlayer}/>
+                  <Player name={player.name} score={player.score} id={player.id} key={player.id}
+                          removePlayer={this.handleRemovePlayer}
+                          changeScore={this.handleChangeScore}
+                  />
+
               )
             })
           }
@@ -36,7 +40,12 @@ class App extends React.Component {
       players:  prevState.players.filter(player => player.id !== id)
     }));
   }
+
+  handleChangeScore(id, delta) {
+    console.log('handleChangeScore', id, delta);
+  }
 }
+
 
 
 
