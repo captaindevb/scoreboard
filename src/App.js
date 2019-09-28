@@ -41,8 +41,15 @@ class App extends React.Component {
     }));
   }
 
-  handleChangeScore(id, delta) {
+  handleChangeScore = (id, delta) => {
     console.log('handleChangeScore', id, delta);
+    this.setState( prevState => {
+        const player = prevState.players.find(player => player.id === id);
+        player.score += delta;
+        return {
+            player: [ ...prevState.players ] // 새로운 바구니에서 배열을 가지고 와서 펼쳐라
+        }
+    })
   }
 }
 
