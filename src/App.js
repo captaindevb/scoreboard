@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import {Header} from './Header';
 import {Player} from './Player';
+import {AddPlayerForm} from './AddPlayerForm';
 
 
 class App extends React.Component {
@@ -17,7 +18,8 @@ class App extends React.Component {
   render(){
     return (
         <div className="scoreboard">
-          <Header title="My score board" totalPlayers={11}/>
+
+            <Header title="My score board" players={this.state.players}/>
           { // 여기서 부터 jsx expression
             this.state.players.map((player) => { //props로  app에서 내려준 값 + map 사용해서 새로운 배열 리턴하기
               return ( //2. 콜백 펑션 넘겨주기
@@ -29,6 +31,7 @@ class App extends React.Component {
               )
             })
           }
+          <AddPlayerForm />
         </div>
     )
   }
