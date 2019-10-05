@@ -31,7 +31,7 @@ class App extends React.Component {
               )
             })
           }
-          <AddPlayerForm />
+          <AddPlayerForm addPlayer={this.heandleAddPlayer}/>
         </div>
     )
   }
@@ -61,6 +61,10 @@ class App extends React.Component {
         //  return player;
         // })
     })
+  }
+
+  heandleAddPlayer(name){
+      console.log('핸들에드플레이어 ㅋ', name);
   }
 }
 
