@@ -7,7 +7,8 @@ import {AddPlayerForm} from './AddPlayerForm';
 
 
 class App extends React.Component {
-  state = {
+    maxId = 4; //클래스의 속성.
+    state = {
     players: [
       {name: 'LDK', score: 30, id: 1},
       {name: 'LEB', score: 40, id: 2},
@@ -63,8 +64,19 @@ class App extends React.Component {
     })
   }
 
-  heandleAddPlayer(name){
-      console.log('핸들에드플레이어 ㅋ', name);
+  heandleAddPlayer = (name) => {
+      console.log('핸들에드플레이어', name);
+      this.setState(prevState => {
+          // prevState.players.push({name:name, id: ++this.maxId, score: 0});
+          // return {
+          //     players: [ ...prevState.players ]
+          // }
+          const players = [ ...prevState.players ]; //원본배열을 훼손하지않고 배열 추가하기
+          players.push({name:name, id: ++this.maxId, score: 0});
+          return {
+              players //players: players 으로 표현하지만 똑같으므로 줄여쓸수있다.
+          }
+      })
   }
 }
 
