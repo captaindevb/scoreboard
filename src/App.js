@@ -74,7 +74,7 @@ class App extends React.Component {
           const players = [ ...prevState.players ]; //원본배열을 훼손하지않고 배열 추가하기
           players.push({name:name, id: ++this.maxId, score: 0});
           return {
-              players //players: players 으로 표현하지만 똑같으므로 줄여쓸수있다.
+              players  //players: players 으로 표현하지만 똑같으므로 줄여쓸수있다.
           }
       })
   }
