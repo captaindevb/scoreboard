@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 //state를 가지려면 반드시 class 컴포넌트여야한다. class 컴포넌트 만드는 법
 //class는 react를 상속받아야 한다. extends React.Component
@@ -19,4 +20,11 @@ export class Counter extends React.Component{
             </div>
         )
     }
+}
+
+// eslint-disable-next-line react/no-typos
+Counter.PropTypes = {
+    changeScore: PropTypes.func,
+    id: PropTypes.number,
+    score: PropTypes.number
 }

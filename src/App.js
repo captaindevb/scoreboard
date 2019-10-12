@@ -4,38 +4,31 @@ import './App.css';
 import {Header} from './Header';
 import {Player} from './Player';
 import {AddPlayerForm} from './AddPlayerForm';
+import {connect} from "react-redux";
 
 
 class App extends React.Component {
     maxId = 4; //클래스의 속성.
-    state = {
-    players: [
-      {name: 'LDK', score: 30, id: 1},
-      {name: 'LEB', score: 40, id: 2},
-      {name: 'MENA', score: 50, id: 3},
-      {name: 'SHJ', score: 20, id: 4},
-    ]
-  }
-  render(){
-    return (
-        <div className="scoreboard">
+    render() {
+        return (
+            <div className="scoreboard">
+                <Header players={this.props.players} />
 
-            <Header title="My score board" players={this.state.players}/>
-          { // 여기서 부터 jsx expression
-            this.state.players.map((player) => { //props로  app에서 내려준 값 + map 사용해서 새로운 배열 리턴하기
-              return ( //2. 콜백 펑션 넘겨주기
-                  <Player name={player.name} score={player.score} id={player.id} key={player.id}
-                          removePlayer={this.handleRemovePlayer}
-                          changeScore={this.handleChangeScore}
-                  />
+                {
+                    this.props.players.map((player) => {
+                        return (
+                            <Player name={player.name} score={player.score} id={player.id} key={player.id}
+                                // 2. props로 콜백 펑션을 전달
+                                    removePlayer={this.handleRemovePlayer}
+                                    changeScore={this.handleChangeScore} />
+                        )
+                    })
+                }
 
-              )
-            })
-          }
-          <AddPlayerForm addPlayer={this.heandleAddPlayer}/>
-        </div>
-    )
-  }
+                <AddPlayerForm addPlayer={this.handleAddPlayer}></AddPlayerForm>
+            </div>
+        );
+    }
 
   // 1. 콜백 펑션 정의
   handleRemovePlayer = (id) => {
@@ -47,21 +40,16 @@ class App extends React.Component {
 
   handleChangeScore = (id, delta) => {
     console.log('handleChangeScore', id, delta);
-    this.setState( prevState => {
-        const player = prevState.players.find(player => player.id === id);
-        player.score += delta;
-        return {
-            player: [ ...prevState.players ] // 새로운 바구니에서 배열을 가지고 와서 펼쳐라
-        }
-
-        //map으로 할 경우 [] 필요없음
-        // player: prevState.players.map(player => {
-        //  if(player.id === id){
-        //      player.score+= delta;
-        //  }
-        //  return player;
-        // })
-    })
+      this.setState(prevState => {
+          return {
+              player: prevState.players.map(player => {
+                  if (player.id === id) {
+                      player.score += delta;
+                  }
+                  return player;
+              })
+          }
+      })
   }
 
   heandleAddPlayer = (name) => {
@@ -80,7 +68,9 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = (state) => ({
+    // 왼쪽은 props, 오른쪽이 store state
+    players: state.playerReducer.players
+})
 
-
-
-export default App;
+export default connect(mapStateToProps)(App);

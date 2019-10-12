@@ -1,10 +1,15 @@
 import React from 'react';
 import {Counter} from "./Counter";
+import PropTypes from 'prop-types';
 
 
 //this.props.id 받아줘야하고, 함수 선언문을 넣어야 하기때문에 익명함수로 랩핑하기
-export class Player extends React.PureComponent { // 내꺼만 렌더링
-
+export class Player extends React.Component { // 내꺼만 렌더링
+    static price  = 1000;
+    static propTypes = {
+        removePlayer: PropTypes.func,
+        id: PropTypes.number
+    };
     render() {
         const {removePlayer, id, name, score, changeScore} = this.props;
         return (
@@ -23,3 +28,5 @@ export class Player extends React.PureComponent { // 내꺼만 렌더링
         return nextProps.score !== this.props.score ? true: false;
     }
 }
+
+
