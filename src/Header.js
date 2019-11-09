@@ -1,30 +1,41 @@
 import React from 'react';
-import {Stats} from "./Stats";
+import Stats from "./Stats";
 import {Stopwatch} from "./Stopwatch";
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 
-//Header란 이름을 갖고 쓸 수 있게 배포하기 . 앞에 export 붙여서 named export 후 App.js에서 추가해줌.
-export const Header = ({players, title}) => {
-    //const {players, title} = props;
+import styles from './pages/scoreboard/Scoreboard.module.css';
+
+// function component 만드는 법
+// 1. 첫글자가 대문자
+// 2. React Elemement를 리턴
+const Header = ({players, title}) => {
     return (
-        <header className="header">
-            <Stats players={players} />
-            <h1 className="h1">{title}</h1>
+        <header className={styles.header}>
+            <Stats />
+            <h1 className={styles.h1}>{title}</h1>
             <Stopwatch></Stopwatch>
         </header>
-    ); // 가독성을 위해 ()로 감싸기
+    );
 }
 
-// eslint-disable-next-line react/no-typos
-Header.PropTypes = {
+Header.propTypes = {
     title: PropTypes.string,
     players: PropTypes.arrayOf(PropTypes.shape({
-        id:PropTypes.number,
-        score:PropTypes.number,
-        name:PropTypes.string
+        id: PropTypes.number,
+        score: PropTypes.number,
+        name: PropTypes.string
     }))
 }
 
 Header.defaultProps = {
-    title: '스코어보드'
+    title: 'Scoreboard'
 }
+
+// store의 state를 props 매핑
+const mapStateToProps = (state) => ({
+    // 왼쪽은 props, 오른쪽이 store state
+    title: state.playerReducer.title
+})
+// 커링펑션, HoC
+export default connect(mapStateToProps)(Header);
