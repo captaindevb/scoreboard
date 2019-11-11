@@ -30,10 +30,10 @@ export class Heroes extends React.Component {
 					return (
 					<li key={hero.id} className="row align-items-center m-0">
 						<div className="col-1 py-2">
-							<img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/face-24px.svg'} alt={hero.name}
+							<img src={hero.photo ? hero.photo : process.env.PUBLIC_URL + '/images/baseline-face-24px.svg'} alt={hero.name}
 									 className="img-fluid rounded-circle" style={{width: '100%'}} />
 						</div>
-						<span className="col">{hero.name}</span>
+						<span className="col">제목 : {hero.name}</span>
 					</li>
 					)
 				})}
