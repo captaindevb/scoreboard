@@ -9,4 +9,7 @@ redux 적용<br>
 
 [Heroes]<br>
 REST api 사용하여 json 데이터를 가져와 heroes 페이지 구성<br>
-scss, 부트스트랩 사용
+scss, 부트스트랩 사용<br>
+
+AWS s3 React 앱 배포<br>
+http://captaindevb-react.s3-website.ap-northeast-2.amazonaws.com/<br>
